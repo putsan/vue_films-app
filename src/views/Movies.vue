@@ -2,8 +2,11 @@
   <div class="Movies">
     <h1 class="Movies__title">Popular Movies</h1>
 
-    <Search />
-    <MoviesList />
+    <Search
+      @handle-query="handleQuery"
+    />
+    <MoviesList
+    />
   </div>
 </template>
 
@@ -17,6 +20,11 @@ export default {
     return {
       query: '',
     };
+  },
+  methods: {
+    handleQuery(query) {
+      this.query = query;
+    },
   },
   components: {
     MoviesList,

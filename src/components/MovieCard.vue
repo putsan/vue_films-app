@@ -91,7 +91,7 @@ export default {
   }
 
   $card-size: 258px;
-  $image-size: 160px;
+  $image-size: 200px;
   $image-centered: ($card-size - $image-size) / 2;
 
   .Card {
@@ -105,7 +105,7 @@ export default {
     &__image {
       width: $image-size;
       height: $image-size + 40;
-      margin: 25px $image-centered 0;
+      margin: 15px $image-centered 0;
     }
 
     &__body {

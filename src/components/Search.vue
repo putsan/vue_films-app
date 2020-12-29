@@ -2,18 +2,35 @@
   <div class="Search">
     <input
       type="text"
-      :value="query"
+      v-model.lazy="query"
       placeholder="Find what you want ;)"
       class="Search__input"
     />
+    <button
+      class="Search__clean"
+    >
+      X
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Search',
-  props: {
-    query: String,
+  data() {
+    return {
+      query: '',
+    };
+  },
+  methods: {
+    onChange() {
+      this.$emit('handle-query', this.query);
+    },
+  },
+  watch: {
+    query() {
+      this.onChange(); // ЗАБРАТИ ПОВІЛЬНЕ ОНОВЛЕЕНЯ ВГОРІ
+    },
   },
 };
 </script>
@@ -26,7 +43,7 @@ export default {
     padding-bottom: 15px;
 
     &__input {
-
+      height: 2em;
     }
   }
 
