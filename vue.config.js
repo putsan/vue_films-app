@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/my-first-project/',
+  publicPath: '/vue_films-app/',
   chainWebpack: config => {
     config
       .plugin('html')
