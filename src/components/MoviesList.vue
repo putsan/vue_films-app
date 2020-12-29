@@ -1,40 +1,17 @@
 <template>
   <div class="MovieList">
-    <h1 class="MovieList__title">Title</h1>
-
     <ul class="MovieList__list">
       <div
+        class="MovieList__loader"
         v-infinite-scroll="loadMore"
         infinite-scroll-disabled="busy"
         infinite-scroll-distance="limit"
       >
-        <!-- <MovieCard
+        <MovieCard
           v-for="movie in popular"
           :key="movie.id"
           :movie="movie"
-        /> -->
-
-        <li
-          v-for="post in popular"
-          :key="post.id"
-          style="margin-bottom: 2em; border: 1px solid;"
-          data-aos="slide-up"
-          data-aos-offset="100"
-          data-aos-easing="ease-out-back"
-        >
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title">
-                {{post.title}}
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                <!-- <p>{{post.body}}</p> -->
-              </div>
-            </div>
-          </div>
-        </li>
+        />
       </div>
     </ul>
   </div>
@@ -42,21 +19,20 @@
 
 <script>
 import { getPopular } from '@/api/popularMovies';
-// import MovieCard from '@/components/MovieCard.vue';
+import MovieCard from '@/components/MovieCard.vue';
 
 export default {
   name: 'MoviesList',
   data() {
     return {
       popular: [],
-      limit: 10,
+      limit: 20,
       busy: false,
       page: 1,
     };
   },
   methods: {
     async loadMore() {
-      console.log('Adding N more data results');
       this.busy = true;
 
       const films = await getPopular(this.page);
@@ -73,15 +49,32 @@ export default {
     this.loadMore();
   },
   components: {
-    // MovieCard,
+    MovieCard,
   },
 };
 </script>
 
 <style scoped lang="scss">
+  $cell-size: 258px;
+
   .MovieList {
     &__list {
+      margin: 0;
+      padding-left: 0;
+
       list-style: none;
+    }
+
+    &__loader {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, $cell-size);
+      justify-content: center;
+      gap: 50px 48px;
+      padding: 0 40px 50px;
+
+      @media (min-width: 1200px) {
+        grid-template-columns: repeat(4, $cell-size);
+      }
+    }
   }
-}
 </style>
