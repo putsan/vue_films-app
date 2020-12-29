@@ -1,7 +1,10 @@
 import getData from './getData';
 
-function genres() {
-  return getData('/genre/movie/list');
+async function genres() {
+  const response = await getData('/genre/movie/list');
+  const { genres: collection } = await response.json();
+
+  return collection;
 }
 
 export default genres;

@@ -3,9 +3,8 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 
 async function getData(url, query = '') {
   const response = await fetch(`${BASE_URL}${url}?api_key=${API_KEY}${query}`);
-  const { results } = await response.json();
 
-  return results;
+  return response;
 }
 
 export default getData;

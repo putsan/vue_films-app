@@ -50,8 +50,6 @@ export default {
     async prepareGenres() {
       const movieGenres = await genres();
 
-      console.log(movieGenres);
-
       this.genresIndex = movieGenres.reduce((acc, genre) => ({
         ...acc,
         [genre.id]: genre.name,

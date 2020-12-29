@@ -22,7 +22,15 @@
         {{movie.overview}}
       </p>
 
-      {{movie.genre_ids}} {{genres}}
+      <ul class="Card__genresList">
+        <li
+          v-for="genre in getGenres"
+          :key="genre"
+          class="Card__genre"
+        >
+          {{ genre }}
+        </li>
+      </ul>
 
       <div
         class="Card__buttons"
@@ -64,6 +72,9 @@ export default {
     getPoster() {
       return `https://image.tmdb.org/t/p/original/${this.movie.poster_path}`;
     },
+    getGenres() {
+      return this.movie.genre_ids.map((genreId) => this.genres[genreId]);
+    },
   },
 };
 </script>
@@ -102,11 +113,20 @@ export default {
     }
 
     &__title {
+      @include text-owerflow(2);
+
       font-size: 1.2em;
     }
 
     &__paragraph {
       @include text-owerflow(5);
+    }
+
+    &__genresList {
+      margin: 0;
+      padding-left: 0;
+
+      list-style: none;
     }
   }
 </style>
