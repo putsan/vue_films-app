@@ -17,7 +17,7 @@
         <li
           v-for="post in popular"
           :key="post.id"
-          style="margin-bottom: 10vh;"
+          style="margin-bottom: 2em; border: 1px solid;"
           data-aos="slide-up"
           data-aos-offset="100"
           data-aos-easing="ease-out-back"
