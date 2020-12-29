@@ -6,11 +6,14 @@
       @handle-query="handleQuery"
     />
     <MoviesList
+      :popular="popular"
+      @load-popular="loadPopular"
     />
   </div>
 </template>
 
 <script>
+import getPopular from '@/api/popularMovies';
 import MoviesList from '@/components/MoviesList.vue';
 import Search from '@/components/Search.vue';
 
@@ -18,12 +21,23 @@ export default {
   name: 'Movies',
   data() {
     return {
+      popular: [],
+      page: 1,
       query: '',
     };
   },
   methods: {
     handleQuery(query) {
       this.query = query;
+    },
+    async loadPopular() {
+      const films = await getPopular(this.page);
+
+      this.popular = [
+        ...this.popular,
+        ...films,
+      ];
+      this.page += 1;
     },
   },
   components: {

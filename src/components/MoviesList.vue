@@ -19,32 +19,26 @@
 </template>
 
 <script>
-import { getPopular } from '@/api/popularMovies';
 import genres from '@/api/genres';
 import MovieCard from '@/components/MovieCard.vue';
 
 export default {
   name: 'MoviesList',
+  props: {
+    popular: Array,
+  },
   data() {
     return {
-      popular: [],
       limit: 20,
       busy: false,
-      page: 1,
       genresIndex: {},
     };
   },
   methods: {
-    async loadMore() {
+    loadMore() {
       this.busy = true;
 
-      const films = await getPopular(this.page);
-      this.page += 1;
-
-      this.popular = [
-        ...this.popular,
-        ...films,
-      ];
+      this.$emit('load-popular');
       this.busy = false;
     },
     async prepareGenres() {
@@ -58,7 +52,6 @@ export default {
   },
   created() {
     this.prepareGenres();
-    this.loadMore();
   },
   components: {
     MovieCard,
