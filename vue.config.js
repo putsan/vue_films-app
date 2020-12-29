@@ -1,4 +1,5 @@
 module.exports = {
+  publicPath: '/my-first-project/',
   chainWebpack: config => {
     config
       .plugin('html')

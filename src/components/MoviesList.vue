@@ -11,6 +11,7 @@
           v-for="movie in popular"
           :key="movie.id"
           :movie="movie"
+          :genres="genresIndex"
         />
       </div>
     </ul>
@@ -19,6 +20,7 @@
 
 <script>
 import { getPopular } from '@/api/popularMovies';
+import genres from '@/api/genres';
 import MovieCard from '@/components/MovieCard.vue';
 
 export default {
@@ -29,6 +31,7 @@ export default {
       limit: 20,
       busy: false,
       page: 1,
+      genresIndex: {},
     };
   },
   methods: {
@@ -44,8 +47,19 @@ export default {
       ];
       this.busy = false;
     },
+    async prepareGenres() {
+      const movieGenres = await genres();
+
+      console.log(movieGenres);
+
+      this.genresIndex = movieGenres.reduce((acc, genre) => ({
+        ...acc,
+        [genre.id]: genre.name,
+      }), {});
+    },
   },
   created() {
+    this.prepareGenres();
     this.loadMore();
   },
   components: {

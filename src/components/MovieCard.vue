@@ -22,7 +22,7 @@
         {{movie.overview}}
       </p>
 
-      {{movie.genre_ids}}
+      {{movie.genre_ids}} {{genres}}
 
       <div
         class="Card__buttons"
@@ -52,6 +52,10 @@ export default {
   name: 'MovieCard',
   props: {
     movie: {
+      type: Object,
+      required: true,
+    },
+    genres: {
       type: Object,
       required: true,
     },
