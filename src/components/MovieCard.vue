@@ -71,7 +71,7 @@ export default {
       } else {
         localStorage.setItem(id, JSON.stringify(this.movie));
       }
-      // this.$emit('handle-favorite', this.movie);
+      this.$emit('handle-favorite');
     },
   },
   computed: {

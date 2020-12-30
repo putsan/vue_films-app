@@ -6,7 +6,9 @@
       @handle-query="handleQuery"
     />
 
-    <Favorites />
+    <Favorites
+      :favoritesIds="favoritesIds"
+    />
 
     <MoviesList
       :popular="popular"
@@ -32,6 +34,7 @@ export default {
       page: 1,
       query: '',
       totalPages: 1,
+      favoritesIds: {},
     };
   },
   methods: {
@@ -62,8 +65,9 @@ export default {
 
       this.updateList(films);
     },
-    handleFavorite(movie) {
-      localStorage.setItem(movie.id, JSON.stringify(movie));
+    handleFavorite() {
+      this.favoritesIds = Object.keys(localStorage)
+        .filter((key) => localStorage.getItem(key)[0] === '{');
     },
     updateList(films) {
       this.popular = [
@@ -76,6 +80,11 @@ export default {
       this.popular = [];
       this.page = 1;
     },
+  },
+  mounted() {
+    if (localStorage.length) {
+      this.handleFavorite();
+    }
   },
   components: {
     MoviesList,

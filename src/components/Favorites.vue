@@ -18,6 +18,9 @@
 <script>
 export default {
   name: 'Favorites',
+  props: {
+    favoritesIds: Array,
+  },
   data() {
     return {
       collorCashe: {},
@@ -33,8 +36,7 @@ export default {
   },
   computed: {
     localFavorites() {
-      return Object.keys(localStorage)
-        .filter((key) => localStorage.getItem(key)[0] === '{')
+      return this.favoritesIds
         .map((key) => JSON.parse(localStorage.getItem(key)));
     },
   },
