@@ -84,10 +84,8 @@ export default {
     },
     checkFavorite() {
       const parsedIds = this.favoritesIds.map((id) => +id);
-      console.log(parsedIds, this.movie.id, parsedIds.includes(this.movie.id));
-      const gg = (!parsedIds.includes(this.movie.id)) ? '🖤' : '❤️';
-      console.log(gg);
-      return gg;
+
+      return (!parsedIds.includes(this.movie.id)) ? '🖤' : '❤️';
     },
   },
 };
@@ -119,6 +117,7 @@ export default {
     &__image {
       width: $image-size;
       height: $image-size + 65;
+      min-height: $image-size + 65;
       margin: 15px $image-centered 0;
     }
 

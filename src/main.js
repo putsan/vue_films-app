@@ -10,7 +10,6 @@ Vue.use(infiniteScroll);
 Vue.use(AOS);
 
 new Vue({
-  // router,
   created() {
     AOS.init();
   },
