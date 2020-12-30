@@ -10,7 +10,6 @@ const routes = [
     name: 'Movies',
     component: Movies,
   },
-  // може ще буде роутинг на сторінку кожного фільму
 ];
 
 const router = new VueRouter({

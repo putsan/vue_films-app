@@ -23,19 +23,11 @@
           class="Card__buttons"
         >
           <button
-            v-if="true"
             type="button"
             class="Card__button"
+            @click="favorite"
           >
-            🖤
-          </button>
-
-          <button
-            v-else
-            type="button"
-            class="Card__button"
-          >
-            ❤️
+            {{ checkFavorite }}
           </button>
         </div>
       </div>
@@ -70,12 +62,27 @@ export default {
       required: true,
     },
   },
+  methods: {
+    favorite() {
+      const { id } = this.movie;
+
+      if (localStorage.getItem(id)) {
+        localStorage.removeItem(id);
+      } else {
+        localStorage.setItem(id, JSON.stringify(this.movie));
+      }
+      // this.$emit('handle-favorite', this.movie);
+    },
+  },
   computed: {
     getPoster() {
       return `https://image.tmdb.org/t/p/original/${this.movie.poster_path}`;
     },
     getGenres() {
       return this.movie.genre_ids.map((genreId) => this.genres[genreId]);
+    },
+    checkFavorite() {
+      return !localStorage.getItem(this.movie.id) ? '🖤' : '❤️';
     },
   },
 };

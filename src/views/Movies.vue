@@ -5,10 +5,14 @@
     <Search
       @handle-query="handleQuery"
     />
+
+    <Favorites />
+
     <MoviesList
       :popular="popular"
       :totalPages="totalPages"
       @load-popular="loadPopular"
+      @handle-favorite="handleFavorite"
     />
   </div>
 </template>
@@ -18,6 +22,7 @@ import getPopular from '@/api/popularMovies';
 import getMoviesByQuery from '@/api/search';
 import MoviesList from '@/components/MoviesList.vue';
 import Search from '@/components/Search.vue';
+import Favorites from '@/components/Favorites.vue';
 
 export default {
   name: 'Movies',
@@ -57,6 +62,9 @@ export default {
 
       this.updateList(films);
     },
+    handleFavorite(movie) {
+      localStorage.setItem(movie.id, JSON.stringify(movie));
+    },
     updateList(films) {
       this.popular = [
         ...this.popular,
@@ -72,6 +80,7 @@ export default {
   components: {
     MoviesList,
     Search,
+    Favorites,
   },
 };
 </script>

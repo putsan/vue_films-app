@@ -35,7 +35,7 @@ export default {
   },
   watch: {
     query() {
-      this.onChange(); // ЗАБРАТИ ПОВІЛЬНЕ ОНОВЛЕЕНЯ ВГОРІ
+      this.onChange();
     },
   },
 };

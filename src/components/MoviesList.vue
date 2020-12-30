@@ -15,6 +15,7 @@
           :key="movie.id"
           :movie="movie"
           :genres="genresIndex"
+          @handle-favorite="handleFavorite"
         />
       </div>
     </ul>
@@ -59,6 +60,9 @@ export default {
         ...acc,
         [genre.id]: genre.name,
       }), {});
+    },
+    handleFavorite(movie) {
+      this.$emit('handle-favorite', movie);
     },
   },
   created() {
