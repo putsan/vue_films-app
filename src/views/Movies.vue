@@ -13,6 +13,7 @@
     <MoviesList
       :popular="popular"
       :totalPages="totalPages"
+      :favoritesIds="favoritesIds"
       @load-popular="loadPopular"
       @handle-favorite="handleFavorite"
     />

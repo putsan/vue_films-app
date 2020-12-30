@@ -61,6 +61,7 @@ export default {
       type: Object,
       required: true,
     },
+    favoritesIds: Array,
   },
   methods: {
     favorite() {
@@ -82,7 +83,11 @@ export default {
       return this.movie.genre_ids.map((genreId) => this.genres[genreId]);
     },
     checkFavorite() {
-      return !localStorage.getItem(this.movie.id) ? '🖤' : '❤️';
+      const parsedIds = this.favoritesIds.map((id) => +id);
+      console.log(parsedIds, this.movie.id, parsedIds.includes(this.movie.id));
+      const gg = (!parsedIds.includes(this.movie.id)) ? '🖤' : '❤️';
+      console.log(gg);
+      return gg;
     },
   },
 };

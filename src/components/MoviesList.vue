@@ -15,6 +15,7 @@
           :key="movie.id"
           :movie="movie"
           :genres="genresIndex"
+          :favoritesIds="favoritesIds"
           @handle-favorite="handleFavorite"
         />
       </div>
@@ -38,6 +39,7 @@ export default {
   props: {
     popular: Array,
     totalPages: Number,
+    favoritesIds: Array,
   },
   data() {
     return {
@@ -61,8 +63,8 @@ export default {
         [genre.id]: genre.name,
       }), {});
     },
-    handleFavorite(movie) {
-      this.$emit('handle-favorite', movie);
+    handleFavorite() {
+      this.$emit('handle-favorite');
     },
   },
   created() {
