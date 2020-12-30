@@ -11,7 +11,7 @@
     font-family: 'Noto Sans', sans-serif;
     color: #212121;
 
-    background: #faf9f5;
+    background: #ebe8de;
 
     box-sizing: border-box;
   }

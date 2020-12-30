@@ -1,16 +1,22 @@
 <template>
   <div class="Search">
-    <input
-      type="text"
-      v-model.lazy="query"
-      placeholder="Find what you want ;)"
-      class="Search__input"
-    />
-    <button
-      class="Search__clean"
+    <div
+      class="Search__container"
     >
-      X
-    </button>
+      <input
+        type="text"
+        v-model.lazy="query"
+        placeholder="🔍 Find what you want ;)"
+        class="Search__input"
+      />
+      <button
+        v-if="query.length"
+        class="Search__clean"
+        @click="query = ''"
+      >
+        X
+      </button>
+    </div>
   </div>
 </template>
 
@@ -40,10 +46,49 @@ export default {
     display: flex;
     justify-content: center;
 
-    padding-bottom: 15px;
+    margin-bottom: 15px;
+
+    &__container {
+      position: relative;
+    }
 
     &__input {
-      height: 2em;
+      padding-bottom: 4px;
+
+      font-size: 1.3em;
+      text-align: center;
+
+      background: transparent;
+      border: none;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid #212121;
+
+      &::placeholder {
+        color: #212121;
+      }
+
+      &:focus {
+        border-bottom-style: dotted;
+
+        outline: none;
+      }
+    }
+
+    &__clean {
+      position: absolute;
+      top: 50%;
+      right: 0%;
+      color: #212121;
+
+      border: none;
+      background: transparent;
+      transform: translateY(-50%);
+
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 

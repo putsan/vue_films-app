@@ -74,6 +74,7 @@ export default {
   $cell-size: 258px;
 
   .MovieList {
+    padding-top: 30px;
     &__list {
       margin: 0;
       padding-left: 0;

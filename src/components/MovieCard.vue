@@ -8,7 +8,7 @@
     <img
       :src="getPoster"
       class="Card__image"
-      alt="A product"
+      alt="A poster to the film"
     />
 
     <div class="Card__body">
@@ -16,7 +16,29 @@
         {{movie.title}}
       </h4>
 
-      <span>{{movie.release_date}}</span>
+      <div class="Card__subheader">
+        <span>{{movie.release_date}}</span>
+
+        <div
+          class="Card__buttons"
+        >
+          <button
+            v-if="true"
+            type="button"
+            class="Card__button"
+          >
+            🖤
+          </button>
+
+          <button
+            v-else
+            type="button"
+            class="Card__button"
+          >
+            ❤️
+          </button>
+        </div>
+      </div>
 
       <p class="Card__paragraph">
         {{movie.overview}}
@@ -28,29 +50,9 @@
           :key="genre"
           class="Card__genre"
         >
-          {{ genre }}
+          {{ `• ${genre} •` }}
         </li>
       </ul>
-
-      <div
-        class="Card__buttons"
-        role="group"
-        aria-label="Basic example"
-      >
-        <button
-          type="button"
-          class="Card__button"
-        >
-          Details
-        </button>
-
-        <button
-          type="button"
-          class="Card__button"
-        >
-          Pin
-        </button>
-      </div>
     </div>
   </li>
 </template>
@@ -91,7 +93,7 @@ export default {
   }
 
   $card-size: 258px;
-  $image-size: 200px;
+  $image-size: 220px;
   $image-centered: ($card-size - $image-size) / 2;
 
   .Card {
@@ -104,7 +106,7 @@ export default {
 
     &__image {
       width: $image-size;
-      height: $image-size + 40;
+      height: $image-size + 65;
       margin: 15px $image-centered 0;
     }
 
@@ -118,11 +120,39 @@ export default {
       font-size: 1.2em;
     }
 
+    &__subheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__buttons {
+      padding-right: 10%;
+    }
+
+    &__button {
+      font-size: 1.5em;
+
+      border: none;
+      background: transparent;
+
+      transition: transform 1s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.3);
+      }
+    }
+
     &__paragraph {
       @include text-owerflow(5);
     }
 
     &__genresList {
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+
       margin: 0;
       padding-left: 0;
 
