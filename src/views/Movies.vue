@@ -7,6 +7,7 @@
     />
     <MoviesList
       :popular="popular"
+      :totalPages="totalPages"
       @load-popular="loadPopular"
     />
   </div>
@@ -14,6 +15,7 @@
 
 <script>
 import getPopular from '@/api/popularMovies';
+import getMoviesByQuery from '@/api/search';
 import MoviesList from '@/components/MoviesList.vue';
 import Search from '@/components/Search.vue';
 
@@ -24,20 +26,47 @@ export default {
       popular: [],
       page: 1,
       query: '',
+      totalPages: 1,
     };
   },
   methods: {
     handleQuery(query) {
       this.query = query;
+
+      if (query.length) {
+        this.loadByQuery();
+      } else {
+        this.reloadFromStart();
+        this.loadPopular();
+      }
     },
     async loadPopular() {
       const films = await getPopular(this.page);
 
+      this.updateList(films);
+    },
+    async loadByQuery() {
+      const { films, totalPages } = await getMoviesByQuery(this.query, this.page);
+
+      this.reloadFromStart();
+      this.totalPages = totalPages;
+
+      if (!totalPages) {
+        return;
+      }
+
+      this.updateList(films);
+    },
+    updateList(films) {
       this.popular = [
         ...this.popular,
         ...films,
       ];
       this.page += 1;
+    },
+    reloadFromStart() {
+      this.popular = [];
+      this.page = 1;
     },
   },
   components: {

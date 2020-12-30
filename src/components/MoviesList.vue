@@ -1,6 +1,9 @@
 <template>
   <div class="MovieList">
-    <ul class="MovieList__list">
+    <ul
+      class="MovieList__list"
+      v-if="totalPages"
+    >
       <div
         class="MovieList__loader"
         v-infinite-scroll="loadMore"
@@ -15,6 +18,13 @@
         />
       </div>
     </ul>
+
+    <p
+      v-else
+      class="MovieList__message"
+    >
+      Don't was find anything by the query. Try another one!)
+    </p>
   </div>
 </template>
 
@@ -26,6 +36,7 @@ export default {
   name: 'MoviesList',
   props: {
     popular: Array,
+    totalPages: Number,
   },
   data() {
     return {
@@ -80,6 +91,10 @@ export default {
       @media (min-width: 1200px) {
         grid-template-columns: repeat(4, $cell-size);
       }
+    }
+
+    &__message {
+      text-align: center;
     }
   }
 </style>
