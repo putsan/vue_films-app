@@ -1,8 +1,19 @@
 <template>
   <div class="App">
-    <router-view/>
+    <Movies />
   </div>
 </template>
+
+<script>
+import Movies from '@/views/Movies.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Movies,
+  },
+};
+</script>
 
 <style lang="scss">
   body {

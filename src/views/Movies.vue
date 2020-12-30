@@ -34,7 +34,7 @@ export default {
       page: 1,
       query: '',
       totalPages: 1,
-      favoritesIds: {},
+      favoritesIds: [],
     };
   },
   methods: {

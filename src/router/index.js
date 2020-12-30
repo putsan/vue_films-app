@@ -1,20 +1,20 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Movies from '@/views/Movies.vue';
+// import Vue from 'vue';
+// import VueRouter from 'vue-router';
+// import Movies from '@/views/Movies.vue';
 
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: '/',
-    name: 'Movies',
-    component: Movies,
-  },
-];
+// const routes = [
+//   {
+//     path: '/',
+//     name: 'Movies',
+//     component: Movies,
+//   },
+// ];
 
-const router = new VueRouter({
-  mode: 'history',
-  routes,
-});
+// const router = new VueRouter({
+//   mode: 'history',
+//   routes,
+// });
 
-export default router;
+// export default router;
