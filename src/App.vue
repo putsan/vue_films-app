@@ -1,16 +1,21 @@
 <template>
   <div class="App">
-    <Movies />
+    <div id="nav">
+      <router-link to="/">Movies</router-link> |
+      <router-link to="/Details">Details</router-link>
+    </div>
+    <!-- <Movies /> -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import Movies from '@/views/Movies.vue';
+// import Movies from '@/views/Movies.vue';
 
 export default {
   name: 'App',
   components: {
-    Movies,
+    // Movies,
   },
 };
 </script>
