@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>THis is page id: {{ $route.params.id }}</h1>
+    <h1 class="title"> THis is page id: {{ $route.params.id }}</h1>
+
+    <p class="paragr">Lorem ipsum dolor sit amet consectetur adipisicing eliribus, corporis!</p>
   </div>
 </template>
 
@@ -18,4 +20,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.paragr {
+  background: red;
+}
+  .title:hover ~ .paragr {
+    background: turquoise;
+  }
 </style>

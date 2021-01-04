@@ -3,7 +3,8 @@
     class="Card"
     data-aos="slide-up"
     data-aos-offset="100"
-    data-aos-easing="ease-out-back"
+    data-aos-easing="ease-out"
+    data-aos-duration="2000"
     @mouseenter="hover = !hover"
     @mouseleave="hover = !hover"
   >
@@ -31,9 +32,18 @@
       </h4>
 
       <div
-      v-show="hover"
+        v-show="hover"
         class="Card__hide-body"
       >
+        <ul class="Card__genresList">
+          <li
+            v-for="genre in getGenres"
+            :key="genre"
+            class="Card__genre"
+          >
+            {{ genre }}
+          </li>
+        </ul>
 
         <p class="Card__paragraph">
           {{movie.overview}}
@@ -43,18 +53,8 @@
           type="button"
           class="Card__button-details"
         >
-          More Details
+          See details
         </button>
-
-        <ul class="Card__genresList">
-          <li
-            v-for="genre in getGenres"
-            :key="genre"
-            class="Card__genre"
-          >
-            {{ `• ${genre} •` }}
-          </li>
-        </ul>
       </div>
     </div>
   </li>
@@ -130,8 +130,12 @@ export default {
     border: 1px solid transparent;
     border-radius: $main-radius;
 
+    transition: transform 800ms;
+
     &:hover {
+      transform: scale(1.05);
       border-color: #000;
+      z-index: 1;
     }
 
     &__release-year {
@@ -140,15 +144,16 @@ export default {
       left: $year-and-like-position;
 
       padding: 0 3px;
+      font-weight: 700;
 
-      background: yellow;
+      background: $contrast;
       border-radius: $main-radius;
     }
 
     &__image {
       width: $card-image-size;
-      height: $card-image-size + 65;
-      min-height: $card-image-size + 65;
+      height: $card-image-heigth;
+      min-height: $card-image-heigth;
 
       border-radius: $main-radius;
     }
@@ -164,19 +169,27 @@ export default {
 
     &__hide-body {
       position: absolute;
-      bottom: -160px;
+      top: 99%;
+      left: -1px;
 
-      background: red;
-      z-index: 5;
+      width: $cell-and-card-size - 18px;
+      max-width: $cell-and-card-size - 2px;
+      padding: 0 8px 8px;
+
+      background: #fff;
+      border: 1px solid #000;
+      border-top: none;
+      border-bottom-left-radius: $main-radius;
+      border-bottom-right-radius: $main-radius;
     }
 
     &__body {
-      padding: 0 8px 10px;
+      padding-bottom: 8px;
     }
 
     &__button-like {
       position: absolute;
-      top: 62%;
+      top: $card-image-heigth - 38px;
       right: $year-and-like-position;
       padding: 1px;
 
@@ -190,16 +203,8 @@ export default {
       cursor: pointer;
 
       &:hover {
-        transform: scale(1.2);
+        transform: scale(0.85);
       }
-    }
-
-    &__paragraph {
-      @include text-owerflow(3);
-    }
-
-    &__button-details {
-      width: 100%;
     }
 
     &__genresList {
@@ -211,6 +216,56 @@ export default {
       padding-left: 0;
 
       list-style: none;
+    }
+
+    &__genre {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 0 3px;
+
+      font-size: 0.7em;
+      text-transform: uppercase;
+
+      background: $contrast;
+      border-radius: $main-radius;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &__paragraph {
+      @include text-owerflow(3);
+    }
+
+    &__button-details {
+      width: 100%;
+      margin-top: 5px;
+      padding: 5px 0;
+
+      font-size: 0.9em;
+      font-weight: 700;
+
+      border: 1px solid rgba(240, 240, 80, 0.893);
+      border-radius: $main-radius;
+      background: $contrast;
+      outline-color: yellow;
+
+      transition: border-color 800ms,
+        background 800ms,
+        transform 800ms;
+      cursor: pointer;
+
+      &:hover {
+        border-color: yellow;
+        background-color: #fff;
+      }
+
+      &:active {
+        transform: scale(0.85);
+        outline-color: yellow;
+        outline-width: 3px;
+      }
     }
   }
 </style>

@@ -26,4 +26,8 @@ export default {
 
     box-sizing: border-box;
   }
+
+  p {
+    margin: 0;;
+  }
 </style>
