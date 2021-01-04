@@ -7,5 +7,12 @@ module.exports = {
         args[0].title = "Popular Films";
         return args;
       })
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        prependData: `@import "@/styles/_variables.scss";`
+      }
+    }
   }
 }

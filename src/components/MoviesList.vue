@@ -77,8 +77,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  $cell-size: 258px;
-
   .MovieList {
     padding-top: 30px;
     &__list {
@@ -90,13 +88,13 @@ export default {
 
     &__loader {
       display: grid;
-      grid-template-columns: repeat(auto-fill, $cell-size);
+      grid-template-columns: repeat(auto-fill, $cell-and-card-size);
       justify-content: center;
       gap: 50px 48px;
       padding: 0 40px 50px;
 
       @media (min-width: 1200px) {
-        grid-template-columns: repeat(4, $cell-size);
+        grid-template-columns: repeat(4, $cell-and-card-size);
       }
     }
 

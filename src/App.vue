@@ -1,10 +1,5 @@
 <template>
   <div class="App">
-    <div id="nav">
-      <router-link to="/vue_films-app">Movies</router-link> |
-      <router-link to="/vue_films-app/details">Details</router-link>
-    </div>
-    <!-- <Movies /> -->
     <router-view />
   </div>
 </template>
