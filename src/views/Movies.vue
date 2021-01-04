@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import moviesAPI from '@/api/moviesAPI';
 import MoviesList from '@/components/MoviesList.vue';
 import Favorites from '@/components/Favorites.vue';
 
@@ -23,43 +22,21 @@ export default {
   name: 'Movies',
   data() {
     return {
-      popular: [],
       page: 1,
-      query: '',
       totalPages: 1,
       favoritesIds: [],
     };
   },
+  props: {
+    popular: Array,
+  },
   methods: {
-    handleQuery(query) {
-      this.query = query;
-
-      if (query.length) {
-        this.loadByQuery();
-      } else {
-        this.reloadFromStart();
-        this.loadPopular();
-      }
-    },
-    async loadPopular() {
-      const films = await moviesAPI.getPopular(this.page);
-
-      this.updateList(films);
-    },
     handleFavorite() {
       this.favoritesIds = Object.keys(localStorage)
         .filter((key) => localStorage.getItem(key)[0] === '{');
     },
-    updateList(films) {
-      this.popular = [
-        ...this.popular,
-        ...films,
-      ];
-      this.page += 1;
-    },
-    reloadFromStart() {
-      this.popular = [];
-      this.page = 1;
+    loadPopular() {
+      this.$emit('load-popular');
     },
   },
   mounted() {

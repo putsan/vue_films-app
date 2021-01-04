@@ -6,7 +6,10 @@
       @handle-query="handleQuery"
     />
 
-    <router-view />
+    <router-view
+      @load-popular="loadPopular"
+      :popular="popular"
+    />
   </div>
 </template>
 
@@ -16,7 +19,22 @@ import Search from '@/components/Search.vue';
 
 export default {
   name: 'App',
+  data: () => ({
+    popular: [],
+    query: '',
+  }),
+
   methods: {
+    handleQuery(query) {
+      this.query = query;
+
+      if (query.length) {
+        this.loadByQuery();
+      } else {
+        this.reloadFromStart();
+        this.loadPopular();
+      }
+    },
     async loadByQuery() {
       const { films, totalPages } = await moviesAPI.getMoviesByQuery(this.query, this.page);
 
@@ -28,6 +46,22 @@ export default {
       }
 
       this.updateList(films);
+    },
+    async loadPopular() {
+      const films = await moviesAPI.getPopular(this.page);
+
+      this.updateList(films);
+    },
+    updateList(films) {
+      this.popular = [
+        ...this.popular,
+        ...films,
+      ];
+      this.page += 1;
+    },
+    reloadFromStart() {
+      this.popular = [];
+      this.page = 1;
     },
   },
   components: {

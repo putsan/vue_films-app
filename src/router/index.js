@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Movies from '@/views/Movies.vue';
-import Details from '@/views/Details.vue';
 
 Vue.use(Router);
 
@@ -14,9 +13,9 @@ export default new Router({
       component: Movies,
     },
     {
-      path: '/vue_films-app/details/:id', // rewrite to Laysy loading!!!!!!!!!!!
+      path: '/vue_films-app/details/:id',
       name: 'Details',
-      component: Details,
+      component: () => import('../views/Details.vue'),
     },
   ],
 });
