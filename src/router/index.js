@@ -9,12 +9,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/vue_films-app',
       name: 'Movies',
       component: Movies,
     },
     {
-      path: '/details/:id', // rewrite to Laysy loading!!!!!!!!!!!
+      path: '/vue_films-app/details/:id', // rewrite to Laysy loading!!!!!!!!!!!
       name: 'Details',
       component: Details,
     },
