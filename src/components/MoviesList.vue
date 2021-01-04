@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import genres from '@/api/genres';
+import moviesAPI from '@/api/moviesAPI';
 import MovieCard from '@/components/MovieCard.vue';
 
 export default {
@@ -56,7 +56,7 @@ export default {
       this.busy = false;
     },
     async prepareGenres() {
-      const movieGenres = await genres();
+      const movieGenres = await moviesAPI.genres();
 
       this.genresIndex = movieGenres.reduce((acc, genre) => ({
         ...acc,
@@ -79,6 +79,7 @@ export default {
 <style scoped lang="scss">
   .MovieList {
     padding-top: 30px;
+
     &__list {
       margin: 0;
       padding-left: 0;

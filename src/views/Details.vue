@@ -1,29 +1,31 @@
 <template>
   <div>
     <h1 class="title"> THis is page id: {{ $route.params.id }}</h1>
-
-    <p class="paragr">Lorem ipsum dolor sit amet consectetur adipisicing eliribus, corporis!</p>
+    {{ movieDetails }}
   </div>
 </template>
 
 <script>
+import moveisAPI from '@/api/moviesAPI';
+
 export default {
   name: 'Details',
   data: () => ({
-
+    movieDetails: {},
   }),
 
-  created() {
-    console.log(this.$route.params.id);
+  methods: {
+    async loadDetails() {
+      this.movieDetails = await moveisAPI.getDetails(this.$route.params.id);
+    },
+  },
+
+  mounted() {
+    this.loadDetails();
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.paragr {
-  background: red;
-}
-  .title:hover ~ .paragr {
-    background: turquoise;
-  }
+
 </style>

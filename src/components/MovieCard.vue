@@ -49,12 +49,12 @@
           {{movie.overview}}
         </p>
 
-        <button
-          type="button"
-          class="Card__button-details"
+        <router-link
+          class="Card__route-to-details"
+          :to="takePath"
         >
           See details
-        </button>
+        </router-link>
       </div>
     </div>
   </li>
@@ -100,6 +100,9 @@ export default {
     },
     takeYear() {
       return this.movie.release_date.split('-')[0];
+    },
+    takePath() {
+      return `/vue_films-app/details/${this.movie.id}`;
     },
     checkFavorite() {
       const parsedIds = this.favoritesIds.map((id) => +id);
@@ -238,13 +241,17 @@ export default {
       @include text-owerflow(3);
     }
 
-    &__button-details {
-      width: 100%;
+    &__route-to-details {
+      display: block;
+      width: calc(100% - 4px);
       margin-top: 5px;
       padding: 5px 0;
 
+      color: #000;
       font-size: 0.9em;
       font-weight: 700;
+      text-align: center;
+      text-decoration: none;
 
       border: 1px solid rgba(240, 240, 80, 0.893);
       border-radius: $main-radius;
