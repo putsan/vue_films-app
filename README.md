@@ -7,7 +7,7 @@ Above the list will show the list of your favorite movies, when you choose some 
 Also, you may use the search field to find interesting movies [ENTER for looking].
 
 ## Project preview by the [link](https://putsan.github.io/vue_films-app/)
-Technology stack: Vue / Scss
+Technology stack: Vue / JS / HTML / Scss
 ___
 
 ## Project setup
