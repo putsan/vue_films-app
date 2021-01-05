@@ -21,6 +21,7 @@ export default {
   name: 'App',
   data: () => ({
     popular: [],
+    page: 1,
     query: '',
   }),
 
