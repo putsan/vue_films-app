@@ -61,16 +61,22 @@ export default {
       background: transparent;
       border: none;
       border-top: 1px solid transparent;
-      border-bottom: 1px solid #212121;
+      border-bottom: 1px dotted #212121;
 
       &::placeholder {
         color: #212121;
+
+        transition: color 500ms;
       }
 
       &:focus {
-        border-bottom-style: dotted;
+        border-bottom-style: solid;
 
         outline: none;
+
+        &::placeholder {
+          color: transparent;
+        }
       }
     }
 

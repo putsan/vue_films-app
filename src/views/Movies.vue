@@ -1,6 +1,7 @@
 <template>
   <div class="Movies">
     <Favorites
+      v-if="favoritesIds.length"
       :favoritesIds="favoritesIds"
     />
 
@@ -47,4 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .Movies {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
 </style>

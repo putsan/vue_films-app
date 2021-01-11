@@ -64,6 +64,8 @@ export default {
   $year-and-like-position: 8px;
 
   .Poster {
+    position: relative;
+
     &__release-year {
       position: absolute;
       top: $year-and-like-position;

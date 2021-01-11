@@ -1,5 +1,11 @@
 <template>
-  <div class="Favorites">
+  <div
+    class="Favorites"
+  >
+    <h3 class="Favorites__title">
+      Your favorites movies:
+    </h3>
+
     <ul
       class="Favorites__list"
     >
@@ -45,8 +51,31 @@ export default {
 
 <style lang="scss" scoped>
   .Favorites {
+    width: 75%;
+    margin: auto;
     padding: 10px 25px;
-    font-weight: 700;
+
+    text-align: center;
+
+    background: $contrast;
+    border-radius: $main-radius;
+
+    &__title {
+      position: relative;
+      margin: 0 0 15px;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 110%;
+        left: 50%;
+
+        width: 55%;
+
+        border-bottom: 1px #212121 dotted;
+        transform: translate(-50%);
+      }
+    }
 
     &__list {
       display: flex;
@@ -59,6 +88,10 @@ export default {
 
     &__item {
       margin: 5px 5px;
+      padding: 0 5px;
+
+      background: #fff;
+      border-radius: $main-radius;
     }
   }
 </style>

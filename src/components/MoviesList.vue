@@ -92,7 +92,7 @@ export default {
       grid-template-columns: repeat(auto-fill, $cell-and-card-size);
       justify-content: center;
       gap: 30px;
-      padding: 0 40px 50px;
+      padding-bottom: 50px;
 
       @media (min-width: 1200px) {
         grid-template-columns: repeat(4, $cell-and-card-size);

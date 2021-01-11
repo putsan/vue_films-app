@@ -87,7 +87,7 @@ export default {
     font-family: 'Noto Sans', sans-serif;
     color: #212121;
 
-    background: #ebe8de;
+    background: $page-background;
 
     box-sizing: border-box;
   }
@@ -111,7 +111,7 @@ export default {
 
         width: 55%;
 
-        border-bottom: 1px #212121 solid;
+        border-bottom: 1px #212121 dotted;
         transform: translate(-50%);
       }
     }
