@@ -51,7 +51,7 @@ export default {
       return (!parsedIds.includes(this.movie.id)) ? '🖤' : '❤️';
     },
     pathToPoster() {
-      return `https://image.tmdb.org/t/p/original/${this.movie.poster_path}`;
+      return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
     },
     takeYear() {
       return +this.movie.release_date.split('-')[0];
