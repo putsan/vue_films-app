@@ -2,14 +2,18 @@
   <div class="Details">
     <div class="Details__wrapper">
       <div class="Details__left-side">
-        <img
-          :src="getPoster"
-          class="Details__image"
-          alt="A poster to the film"
+        <Poster
+          v-if="movieDetails"
+          :favoritesIds="favoritesIds"
+          :movie="movieDetails"
+          @handle-favorite="handleFavorite"
         />
       </div>
 
-      <div class="Details__right-side">
+      <div
+        v-if="movieDetails"
+        class="Details__right-side"
+      >
         <h2 class="Details__title">{{ movieDetails.title}}</h2>
 
         <p class="Details__description">
@@ -26,26 +30,37 @@
 
 <script>
 import moveisAPI from '@/api/moviesAPI';
+import Poster from '@/components/Poster.vue';
 
 export default {
   name: 'Details',
+  props: {
+    favoritesIds: Array,
+  },
   data: () => ({
-    movieDetails: {},
+    movieDetails: null,
   }),
 
   methods: {
     async loadDetails() {
       this.movieDetails = await moveisAPI.getDetails(this.$route.params.id);
     },
-  },
-
-  computed: {
-    getPoster() {
-      return `https://image.tmdb.org/t/p/original/${this.movieDetails.poster_path}`;
+    handleFavorite() {
+      this.$emit('handle-favorite');
     },
   },
 
-  mounted() {
+  components: {
+    Poster,
+  },
+
+  computed: {
+    isDataLoaded() {
+      return Object.keys(this.movieDetails);
+    },
+  },
+
+  created() {
     this.loadDetails();
   },
 };

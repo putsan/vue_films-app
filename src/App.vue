@@ -8,7 +8,10 @@
 
     <router-view
       @load-popular="loadPopular"
+      @handle-favorite="handleFavorite"
       :popular="popular"
+      :totalPages="totalPages"
+      :favoritesIds="favoritesIds"
     />
   </div>
 </template>
@@ -23,6 +26,8 @@ export default {
     popular: [],
     page: 1,
     query: '',
+    totalPages: 1,
+    favoritesIds: [],
   }),
 
   methods: {
@@ -40,7 +45,7 @@ export default {
       const { films, totalPages } = await moviesAPI.getMoviesByQuery(this.query, this.page);
 
       this.reloadFromStart();
-      this.totalPages = totalPages;
+      this.totalPages = +totalPages;
 
       if (!totalPages) {
         return;
@@ -63,6 +68,10 @@ export default {
     reloadFromStart() {
       this.popular = [];
       this.page = 1;
+    },
+    handleFavorite() {
+      this.favoritesIds = Object.keys(localStorage)
+        .filter((key) => localStorage.getItem(key)[0] === '{');
     },
   },
   components: {

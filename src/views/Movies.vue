@@ -20,24 +20,20 @@ import Favorites from '@/components/Favorites.vue';
 
 export default {
   name: 'Movies',
-  data() {
-    return {
-      totalPages: 1,
-      favoritesIds: [],
-    };
-  },
   props: {
     popular: Array,
+    totalPages: Number,
+    favoritesIds: Array,
   },
   methods: {
-    handleFavorite() {
-      this.favoritesIds = Object.keys(localStorage)
-        .filter((key) => localStorage.getItem(key)[0] === '{');
-    },
     loadPopular() {
       this.$emit('load-popular');
     },
+    handleFavorite() {
+      this.$emit('handle-favorite');
+    },
   },
+
   mounted() {
     if (localStorage.length) {
       this.handleFavorite();
